@@ -7,9 +7,11 @@ const productRouthandler = require("./controller/product.controller");
 const userRouthandler = require("./controller/user.controller");
 const cartRouthandler = require("./controller/cart.controller");
 const addressRouthandler = require("./controller/address.controller");
+const home = require("./controller/home.controller");
 
 const { register, login } = require("./controller/signup.controller");
 
+app.use("/", home);
 app.use("/products", productRouthandler);
 app.use("/users", userRouthandler);
 app.use("/cart", cartRouthandler);
