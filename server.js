@@ -1,12 +1,11 @@
 require("dotenv").config();
 
-const express = require("express");
-const app = express();
+const app = require("./index");
+const connect = require("./db/db");
+
 const cors = require("cors");
 app.use(cors());
 
-app.use(express.json());
-app.use(express.static("public"));
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
@@ -35,4 +34,9 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3000);
+const start = async () => {
+  await connect();
+  app.listen(process.env.PORT || 3000);
+};
+
+start();
