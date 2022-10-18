@@ -16,7 +16,7 @@ app.post("/create-checkout-session", async (req, res) => {
       line_items: req.body.items.map((item) => {
         return {
           price_data: {
-            currency: "usd",
+            currency: "inr",
             product_data: {
               name: item.name,
             },
@@ -36,7 +36,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
 const start = async () => {
   await connect();
-  app.listen(process.env.PORT || 3000);
+  app.listen(process.env.PORT || 3005);
 };
 
 start();
